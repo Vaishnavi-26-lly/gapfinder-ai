@@ -105,7 +105,7 @@ export async function gradeAttempt(userId: string, attemptId: string, answers: {
  
   const by = new Map<string, { name: string; correct: number; total: number; missed: string[]; sources: Set<string> }>();
   for (const g of graded) {
-    const s = by.get(g.q.topic_id) ?? { name: g.q.topics.name, correct: 0, total: 0, missed: [], sources: new Set<string>() };
+   const s = by.get(g.q.topic_id) ?? { name: g.q.topics.name, correct: 0, total: 0, missed: [] as string[], sources: new Set<string>() };
     s.total++;
     if (g.ok) s.correct++; else { s.missed.push(g.q.question); s.sources.add(g.q.citation); }
     by.set(g.q.topic_id, s);
